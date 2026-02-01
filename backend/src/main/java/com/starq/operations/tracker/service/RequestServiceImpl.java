@@ -4,6 +4,10 @@ import com.starq.operations.tracker.domain.Request;
 import com.starq.operations.tracker.domain.RequestStatus;
 import com.starq.operations.tracker.exception.ResourceNotFoundException;
 import com.starq.operations.tracker.repository.RequestRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,8 +34,13 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public List<Request> getAllRequests() {
-        return repository.findAll();
+    public Page<Request> getAllRequests(int page, int size, String sortBy, String direction) {
+        Sort sort = direction.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return repository.findAll(pageable);
     }
 
     @Override
