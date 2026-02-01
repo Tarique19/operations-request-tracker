@@ -3,6 +3,7 @@ package com.starq.operations.tracker.controller;
 import com.starq.operations.tracker.domain.Request;
 import com.starq.operations.tracker.dto.CreateRequestDto;
 import com.starq.operations.tracker.dto.RequestResponseDto;
+import com.starq.operations.tracker.dto.UpdateStatusDto;
 import com.starq.operations.tracker.service.RequestService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -64,5 +65,23 @@ public class RequestController {
                 .toList();
         return  ResponseEntity.ok(response);
     }
+
+    @PatchMapping("/{id}/status")
+    public ResponseEntity<RequestResponseDto> updateStatus(
+            @PathVariable Long id,
+            @RequestBody UpdateStatusDto dto) {
+
+        Request updated = service.updateStatus(id, dto.status());
+
+        return ResponseEntity.ok(
+                new RequestResponseDto(
+                        updated.getId(),
+                        updated.getTitle(),
+                        updated.getDescription(),
+                        updated.getStatus().name()
+                )
+        );
+    }
+
 }
 

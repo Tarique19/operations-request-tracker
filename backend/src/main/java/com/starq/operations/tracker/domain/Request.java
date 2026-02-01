@@ -1,8 +1,12 @@
 package com.starq.operations.tracker.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDateTime;
 
+@Getter
 @Entity
 @Table(name = "requests")
 public class Request {
@@ -17,6 +21,8 @@ public class Request {
     @Column(length = 1000)
     private String description;
 
+
+    @Setter
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RequestStatus status;
