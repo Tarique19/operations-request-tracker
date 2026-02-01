@@ -1,4 +1,4 @@
-package com.starq.operations.operations.tracker;
+package com.starq.operations.tracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

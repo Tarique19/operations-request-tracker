@@ -1,4 +1,4 @@
-package com.starq.operations.operations.tracker;
+package com.starq.operations.tracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,9 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/operations_db
+    url: jdbc:postgresql://localhost:5433/operations_db?options=-c%20TimeZone=UTC
     username: operations_user
     password: operations_pass
     driver-class-name: org.postgresql.Driver
+
+  jackson:
+    time-zone: Asia/Kolkata
 
   jpa:
     hibernate:
@@ -13,3 +16,5 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: Asia/Kolkata
